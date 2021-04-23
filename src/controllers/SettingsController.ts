@@ -8,10 +8,34 @@ class SettingsController {
     const settingsService = new SettingsService();
 
     try {
-      const settings = await settingsService.create({ chat, username });
+      await settingsService.create({ chat, username });
       return res.status(200).json({ message: "Saved!" });
     } catch (e) {
       return res.status(400).json({ message: "User already exists!" });
+    }
+  }
+
+  async findByUsername(req: Request, res: Response) {
+    const { username } = req.params;
+
+    const settingsService = new SettingsService();
+
+    const settings = await settingsService.findByUsername(username);
+
+    return res.json(settings);
+  }
+
+  async update(req: Request, res: Response) {
+    const { username } = req.params;
+    const { chat } = req.body;
+
+    const settingsService = new SettingsService();
+
+    try {
+      const settings = await settingsService.update({ username, chat });
+      return res.json(settings);
+    } catch (e) {
+      return res.status(400).json({ message: "An error has ocorred" });
     }
   }
 }
