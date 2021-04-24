@@ -1,5 +1,5 @@
 # NLW-05
-> A simple chat application using websockets, from NextLevelWeek event.
+> A simple chat application using websockets, as proposed by NextLevelWeek event.
 
 ### Usage
 
